@@ -2,5 +2,5 @@
 *.xml
 stored-faces/
 the_office.jpg
-ARCHITECTURE.md
-PLAN.md
+.env
+results/
