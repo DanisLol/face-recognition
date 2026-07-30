@@ -8,7 +8,7 @@ Build a local-only face search CLI: MediaPipe BlazeFace detects faces, an ArcFac
 
 ## Checklist
 
-- [ ] Document/install Homebrew Postgres + pgvector; add schema.sql and DATABASE_URL config
+- [✅] Document/install Homebrew Postgres + pgvector; add schema.sql and DATABASE_URL config
 - [ ] Extract MediaPipe BlazeFace detection from main.py into reusable face_detect module
 - [ ] Add InsightFace ArcFace embedding pipeline (crop → L2-normalized 512-d vector)
 - [ ] Implement psycopg + pgvector insert/upsert and cosine similarity search
