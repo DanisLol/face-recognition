@@ -1,6 +1,7 @@
 *.tflite
 *.xml
 stored-faces/
-the_office.jpg
+reference/
 .env
 results/
+photos/
