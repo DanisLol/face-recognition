@@ -95,7 +95,3 @@ schema.sql         # faces table + vector extension
 ARCHITECTURE.md    # full design
 PLAN.md            # build checklist
 ```
-
-## Out of scope (v1)
-
-Web UI, face clustering / auto-naming, cloud DB, and webcam recognition. See [ARCHITECTURE.md §15](ARCHITECTURE.md).
