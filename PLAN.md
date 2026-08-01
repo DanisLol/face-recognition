@@ -8,12 +8,32 @@ Build a local-only face search CLI: MediaPipe BlazeFace detects faces, an ArcFac
 
 ## Checklist
 
-- [✅] Document/install Homebrew Postgres + pgvector; add schema.sql and DATABASE_URL config
-- [ ] Extract MediaPipe BlazeFace detection from main.py into reusable face_detect module
-- [ ] Add InsightFace ArcFace embedding pipeline (crop → L2-normalized 512-d vector)
+- [x] Document/install Homebrew Postgres + pgvector; add schema.sql and DATABASE_URL config
+- [x] Extract MediaPipe BlazeFace detection from main.py into reusable face_detect module
+- [ ] Add InsightFace ArcFace embedding pipeline (crop → L2-normalized 512-d vector)  ← **you are here**
 - [ ] Implement psycopg + pgvector insert/upsert and cosine similarity search
 - [ ] Build index and search CLI subcommands over an event photo folder
 - [ ] Add requirements.txt, .env.example, README; update .gitignore
+  - Partial: `.env.example`, stub `README.md`, and `.gitignore` exist; still missing `requirements.txt` (and later `config.py` / fuller README)
+
+## Progress (as of 2026-07-31)
+
+| Piece | Status | Notes |
+|-------|--------|-------|
+| `schema.sql` | Done | `vector` extension + `faces` table; no IVF index (correct for v1) |
+| `.env` / `.env.example` | Done | `DATABASE_URL` template present; local `.env` exists (gitignored) |
+| Postgres client | Available | `psql` on machine (`PostgreSQL/18`); confirm `face_search` DB + schema applied if not already |
+| `face_detect.py` | Done | `DetectedFace` + `detect_faces()`; relative BlazeFace path; bbox clamp + BGR crop |
+| `main.py` | Temporary smoke test | Calls `detect_faces("the_office.jpg")` — not the final CLI yet |
+| `face_embed.py` | Stub only | Comment `#Arc face embedding` — **next step** |
+| `db.py` | Not started | |
+| `config.py` | Not started | |
+| `requirements.txt` | Not started | |
+| Index / search CLI | Not started | |
+
+**Done so far:** detection is modular and matches the architecture contract (boxes + crops, no DB, no identity vectors).
+
+**Next:** implement `face_embed.py` so each BlazeFace crop becomes an L2-normalized 512-d ArcFace vector.
 
 ## Important correction
 

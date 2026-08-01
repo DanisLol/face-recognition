@@ -40,15 +40,17 @@ Search results are **paths to files that already exist locally**. Opening or dis
 
 ## 3. Current state vs target state
 
-### Current state (as of planning)
+### Current state (as of 2026-07-31)
 
 | Piece | Status |
 |-------|--------|
-| [`main.py`](main.py) | Prototype: MediaPipe BlazeFace detects faces in one hardcoded image and writes crops to `stored-faces/` |
-| Embedding / recognition | **Not implemented** |
-| PostgreSQL / pgvector | **Not implemented** |
+| [`face_detect.py`](face_detect.py) | **Done:** BlazeFace → `DetectedFace` (bbox + BGR crop); relative model path |
+| [`main.py`](main.py) | Temporary smoke test calling `detect_faces` on one image (not final CLI) |
+| [`schema.sql`](schema.sql) + `.env.example` | **Done:** `faces` table + `DATABASE_URL` template |
+| Embedding / recognition ([`face_embed.py`](face_embed.py)) | **Stub only — next** |
+| `db.py` / PostgreSQL helpers | **Not implemented** |
 | Index / search CLI | **Not implemented** |
-| Packaging (`requirements.txt`, README, `.env`) | **Not implemented** |
+| Packaging | Partial (README stub, `.gitignore`); missing `requirements.txt` / `config.py` |
 
 **Critical distinction:** BlazeFace answers “where is a face?” It does **not** answer “who is this?” Recognition requires embeddings and similarity search.
 
