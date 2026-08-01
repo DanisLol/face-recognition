@@ -1,6 +1,6 @@
 # Local Face Search
 
-CLI tool to find photos of a person in an event folder. Face detection and embedding run on-device; PostgreSQL stores only paths, bounding boxes, and embedding vectors—never image pixels.
+CLI tool to find photos of a person in an event folder. Face detection and embedding run on-device; PostgreSQL stores only paths, bounding boxes, and embedding vectors (no image pixels for privacy)
 
 | Doc | Role |
 |-----|------|
@@ -9,7 +9,7 @@ CLI tool to find photos of a person in an event folder. Face detection and embed
 
 ## How it works
 
-1. **Index** a folder of event photos (detect faces → ArcFace embeddings → upsert into Postgres).
+1. **Index** a folder of photos (detect faces → ArcFace embeddings → upsert into Postgres).
 2. **Search** with a reference photo of the person.
 3. Get a ranked list of matching **image paths** on disk.
 
@@ -30,8 +30,8 @@ See [ARCHITECTURE.md §2](ARCHITECTURE.md) for the full rules.
 ## Requirements
 
 - Python 3.10+
-- PostgreSQL with [pgvector](https://github.com/pgvector/pgvector) (Homebrew on macOS is the default path)
-- BlazeFace model file: `blaze_face_full_range.tflite` in the project root (gitignored)
+- PostgreSQL with [pgvector](https://github.com/pgvector/pgvector) 
+- BlazeFace Full Range model file: `blaze_face_full_range.tflite` in the project root (gitignored)
 
 ### Python packages
 
@@ -43,8 +43,8 @@ InsightFace downloads the `buffalo_l` model on first use (cached under your home
 
 ## Postgres setup
 
-1. Install PostgreSQL and enable pgvector (e.g. Homebrew `postgresql` + `pgvector`).
-2. Create a database, e.g. `face_search`.
+1. Install PostgreSQL and enable pgvector (e.g. `postgresql` + `pgvector`).
+2. Create a Postgres database (e.g. `face_search`).
 3. Apply the schema:
 
 ```bash
@@ -59,7 +59,7 @@ DATABASE_URL=postgresql://USER:PASSWORD@localhost:5432/face_search
 
 ## Usage
 
-### Index an event folder
+### Index the photos folder
 
 ```bash
 python main.py index --folder /path/to/event-photos
