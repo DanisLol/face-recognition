@@ -17,15 +17,12 @@ CLI tool to find photos of a person in an event folder. Face detection and embed
 photo → MediaPipe BlazeFace (detect) → InsightFace ArcFace (embed) → PostgreSQL + pgvector (search)
 ```
 
-Detection answers “where is a face?” Embedding + cosine search answer “who matches?”
-
 ## Privacy
 
 - All ML runs locally on your machine.
 - The database never receives JPEG/PNG bytes or face crop files—only paths, bbox integers, and float vectors.
 - Prefer local Postgres so the whole pipeline stays offline.
 
-See [ARCHITECTURE.md §2](ARCHITECTURE.md) for the full rules.
 
 ## Requirements
 
